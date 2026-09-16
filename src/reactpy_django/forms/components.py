@@ -8,7 +8,6 @@ from uuid import uuid4
 
 from django.forms import Form, ModelForm
 from reactpy import component, hooks, html, utils
-from reactpy.core.events import event
 from reactpy.reactjs import component_from_file
 
 from reactpy_django.forms.transforms import (
@@ -129,8 +128,6 @@ def _django_form(
     form_props = {
         "id": f"reactpy-{uuid}",
         "key": f"reactpy-{uuid}-{render_count}",
-        # Intercept the form submission to prevent the browser from navigating
-        "onSubmit": event(lambda _: None, prevent_default=True),
     }
     if on_change:
         form_props["onChange"] = _on_change
